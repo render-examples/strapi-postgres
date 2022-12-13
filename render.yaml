@@ -4,7 +4,7 @@ services:
     env: node
     plan: free
     buildCommand: yarn install && yarn build
-    startCommand: yarn start
+    startCommand: yarn develop
     healthCheckPath: /_health
     autoDeploy: false
     disk:
