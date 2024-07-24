@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: strapi
+    name: warbreakercms
     env: node
     plan: starter
     buildCommand: yarn install && yarn build
@@ -8,7 +8,7 @@ services:
     healthCheckPath: /_health
     autoDeploy: false
     disk:
-      name: strapi-uploads
+      name: warbreaker-uploads
       mountPath: /opt/render/project/src/public/uploads
       sizeGB: 1
     envVars:
@@ -18,7 +18,7 @@ services:
         value: production
       - key: DATABASE_URL
         fromDatabase:
-          name: strapi
+          name: warbreakerdb
           property: connectionString
       - key: JWT_SECRET
         generateValue: true
@@ -28,5 +28,5 @@ services:
         generateValue: true
 
 databases:
-  - name: strapi
+  - name: warbreakerdb
     plan: starter
