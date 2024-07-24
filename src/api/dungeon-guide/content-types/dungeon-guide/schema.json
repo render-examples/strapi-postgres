@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dungeon_guides",
+  "info": {
+    "singularName": "dungeon-guide",
+    "pluralName": "dungeon-guides",
+    "displayName": "Dungeon Guide",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "body": {
+      "type": "richtext"
+    }
+  }
+}

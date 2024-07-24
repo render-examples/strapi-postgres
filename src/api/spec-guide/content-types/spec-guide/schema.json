@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "spec_guides",
+  "info": {
+    "singularName": "spec-guide",
+    "pluralName": "spec-guides",
+    "displayName": "Spec Guide"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "body": {
+      "type": "richtext"
+    }
+  }
+}
