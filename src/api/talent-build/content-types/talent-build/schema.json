@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "talent_builds",
+  "info": {
+    "singularName": "talent-build",
+    "pluralName": "talent-builds",
+    "displayName": "Talent Builds"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "buildName": {
+      "type": "string"
+    },
+    "wowImportString": {
+      "type": "string"
+    },
+    "dungeon_guide": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::dungeon-guide.dungeon-guide",
+      "inversedBy": "talent_builds"
+    },
+    "spec_guide": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::spec-guide.spec-guide",
+      "inversedBy": "talent_builds"
+    }
+  }
+}
