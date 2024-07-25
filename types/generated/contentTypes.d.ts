@@ -800,12 +800,14 @@ export interface ApiDungeonGuideDungeonGuide extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    body: Attribute.RichText;
+    main: Attribute.RichText;
     talent_builds: Attribute.Relation<
       'api::dungeon-guide.dungeon-guide',
       'oneToMany',
       'api::talent-build.talent-build'
     >;
+    affixes: Attribute.String;
+    protips: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
