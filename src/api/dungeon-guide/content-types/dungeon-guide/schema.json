@@ -4,7 +4,7 @@
   "info": {
     "singularName": "dungeon-guide",
     "pluralName": "dungeon-guides",
-    "displayName": "Dungeon Guide",
+    "displayName": "Dungeon Guides",
     "description": ""
   },
   "options": {
@@ -14,6 +14,12 @@
   "attributes": {
     "body": {
       "type": "richtext"
+    },
+    "talent_builds": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::talent-build.talent-build",
+      "mappedBy": "dungeon_guide"
     }
   }
 }

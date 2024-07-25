@@ -793,7 +793,7 @@ export interface ApiDungeonGuideDungeonGuide extends Schema.CollectionType {
   info: {
     singularName: 'dungeon-guide';
     pluralName: 'dungeon-guides';
-    displayName: 'Dungeon Guide';
+    displayName: 'Dungeon Guides';
     description: '';
   };
   options: {
@@ -801,6 +801,11 @@ export interface ApiDungeonGuideDungeonGuide extends Schema.CollectionType {
   };
   attributes: {
     body: Attribute.RichText;
+    talent_builds: Attribute.Relation<
+      'api::dungeon-guide.dungeon-guide',
+      'oneToMany',
+      'api::talent-build.talent-build'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -812,40 +817,6 @@ export interface ApiDungeonGuideDungeonGuide extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::dungeon-guide.dungeon-guide',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiFeaturedStreamerFeaturedStreamer
-  extends Schema.CollectionType {
-  collectionName: 'featured_streamers';
-  info: {
-    singularName: 'featured-streamer';
-    pluralName: 'featured-streamers';
-    displayName: 'Featured Streamer';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    streamerName: Attribute.String;
-    streamerTwitch: Attribute.String;
-    streamerYouTube: Attribute.String;
-    streamerTwitter: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::featured-streamer.featured-streamer',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::featured-streamer.featured-streamer',
       'oneToOne',
       'admin::user'
     > &
@@ -888,13 +859,20 @@ export interface ApiSpecGuideSpecGuide extends Schema.CollectionType {
   info: {
     singularName: 'spec-guide';
     pluralName: 'spec-guides';
-    displayName: 'Spec Guide';
+    displayName: 'Spec Guides';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     body: Attribute.RichText;
+    talent_builds: Attribute.Relation<
+      'api::spec-guide.spec-guide',
+      'oneToMany',
+      'api::talent-build.talent-build'
+    >;
+    TalentScreencap: Attribute.Media<'images'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -906,6 +884,47 @@ export interface ApiSpecGuideSpecGuide extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::spec-guide.spec-guide',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTalentBuildTalentBuild extends Schema.CollectionType {
+  collectionName: 'talent_builds';
+  info: {
+    singularName: 'talent-build';
+    pluralName: 'talent-builds';
+    displayName: 'Talent Builds';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    buildName: Attribute.String;
+    wowImportString: Attribute.String;
+    dungeon_guide: Attribute.Relation<
+      'api::talent-build.talent-build',
+      'manyToOne',
+      'api::dungeon-guide.dungeon-guide'
+    >;
+    spec_guide: Attribute.Relation<
+      'api::talent-build.talent-build',
+      'manyToOne',
+      'api::spec-guide.spec-guide'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::talent-build.talent-build',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::talent-build.talent-build',
       'oneToOne',
       'admin::user'
     > &
@@ -932,9 +951,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::dungeon-guide.dungeon-guide': ApiDungeonGuideDungeonGuide;
-      'api::featured-streamer.featured-streamer': ApiFeaturedStreamerFeaturedStreamer;
       'api::featured-video.featured-video': ApiFeaturedVideoFeaturedVideo;
       'api::spec-guide.spec-guide': ApiSpecGuideSpecGuide;
+      'api::talent-build.talent-build': ApiTalentBuildTalentBuild;
     }
   }
 }

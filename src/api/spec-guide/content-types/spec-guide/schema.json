@@ -4,7 +4,8 @@
   "info": {
     "singularName": "spec-guide",
     "pluralName": "spec-guides",
-    "displayName": "Spec Guide"
+    "displayName": "Spec Guides",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,19 @@
   "attributes": {
     "body": {
       "type": "richtext"
+    },
+    "talent_builds": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::talent-build.talent-build",
+      "mappedBy": "spec_guide"
+    },
+    "TalentScreencap": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
