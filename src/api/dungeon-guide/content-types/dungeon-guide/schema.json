@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "body": {
+    "main": {
       "type": "richtext"
     },
     "talent_builds": {
@@ -20,6 +20,12 @@
       "relation": "oneToMany",
       "target": "api::talent-build.talent-build",
       "mappedBy": "dungeon_guide"
+    },
+    "affixes": {
+      "type": "string"
+    },
+    "protips": {
+      "type": "string"
     }
   }
 }
