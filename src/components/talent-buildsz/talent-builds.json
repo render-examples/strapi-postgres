@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_talent_buildsz_talent_builds",
+  "info": {
+    "displayName": "talentBuilds",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "wowImportString": {
+      "type": "string"
+    },
+    "talentBuildPic": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "buildName": {
+      "type": "string"
+    }
+  }
+}

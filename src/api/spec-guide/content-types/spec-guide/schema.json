@@ -4,7 +4,7 @@
   "info": {
     "singularName": "spec-guide",
     "pluralName": "spec-guides",
-    "displayName": "Spec Guides",
+    "displayName": "Guides",
     "description": ""
   },
   "options": {
@@ -15,18 +15,26 @@
     "body": {
       "type": "richtext"
     },
-    "talent_builds": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::talent-build.talent-build",
-      "mappedBy": "spec_guide"
+    "sectionTalentBuilds": {
+      "type": "dynamiczone",
+      "components": [
+        "talent-buildsz.talent-builds"
+      ]
     },
-    "TalentScreencap": {
-      "allowedTypes": [
-        "images"
-      ],
-      "type": "media",
-      "multiple": false
+    "consumables": {
+      "type": "text"
+    },
+    "weakauras": {
+      "type": "text"
+    },
+    "macros": {
+      "type": "text"
+    },
+    "sectionRotations": {
+      "type": "dynamiczone",
+      "components": [
+        "rotations.openers"
+      ]
     }
   }
 }

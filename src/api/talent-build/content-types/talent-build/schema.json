@@ -16,18 +16,6 @@
     },
     "wowImportString": {
       "type": "string"
-    },
-    "dungeon_guide": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::dungeon-guide.dungeon-guide",
-      "inversedBy": "talent_builds"
-    },
-    "spec_guide": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::spec-guide.spec-guide",
-      "inversedBy": "talent_builds"
     }
   }
 }

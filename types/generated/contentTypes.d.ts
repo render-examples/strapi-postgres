@@ -788,44 +788,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiDungeonGuideDungeonGuide extends Schema.CollectionType {
-  collectionName: 'dungeon_guides';
-  info: {
-    singularName: 'dungeon-guide';
-    pluralName: 'dungeon-guides';
-    displayName: 'Dungeon Guides';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    main: Attribute.RichText;
-    talent_builds: Attribute.Relation<
-      'api::dungeon-guide.dungeon-guide',
-      'oneToMany',
-      'api::talent-build.talent-build'
-    >;
-    affixes: Attribute.String;
-    protips: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::dungeon-guide.dungeon-guide',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::dungeon-guide.dungeon-guide',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiFeaturedVideoFeaturedVideo extends Schema.CollectionType {
   collectionName: 'featured_videos';
   info: {
@@ -861,7 +823,7 @@ export interface ApiSpecGuideSpecGuide extends Schema.CollectionType {
   info: {
     singularName: 'spec-guide';
     pluralName: 'spec-guides';
-    displayName: 'Spec Guides';
+    displayName: 'Guides';
     description: '';
   };
   options: {
@@ -869,12 +831,13 @@ export interface ApiSpecGuideSpecGuide extends Schema.CollectionType {
   };
   attributes: {
     body: Attribute.RichText;
-    talent_builds: Attribute.Relation<
-      'api::spec-guide.spec-guide',
-      'oneToMany',
-      'api::talent-build.talent-build'
+    sectionTalentBuilds: Attribute.DynamicZone<
+      ['talent-buildsz.talent-builds']
     >;
-    TalentScreencap: Attribute.Media<'images'>;
+    consumables: Attribute.Text;
+    weakauras: Attribute.Text;
+    macros: Attribute.Text;
+    sectionRotations: Attribute.DynamicZone<['rotations.openers']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -906,16 +869,6 @@ export interface ApiTalentBuildTalentBuild extends Schema.CollectionType {
   attributes: {
     buildName: Attribute.String;
     wowImportString: Attribute.String;
-    dungeon_guide: Attribute.Relation<
-      'api::talent-build.talent-build',
-      'manyToOne',
-      'api::dungeon-guide.dungeon-guide'
-    >;
-    spec_guide: Attribute.Relation<
-      'api::talent-build.talent-build',
-      'manyToOne',
-      'api::spec-guide.spec-guide'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -952,7 +905,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::dungeon-guide.dungeon-guide': ApiDungeonGuideDungeonGuide;
       'api::featured-video.featured-video': ApiFeaturedVideoFeaturedVideo;
       'api::spec-guide.spec-guide': ApiSpecGuideSpecGuide;
       'api::talent-build.talent-build': ApiTalentBuildTalentBuild;
