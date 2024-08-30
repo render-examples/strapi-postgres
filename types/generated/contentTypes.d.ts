@@ -818,6 +818,45 @@ export interface ApiFeaturedVideoFeaturedVideo extends Schema.CollectionType {
   };
 }
 
+export interface ApiRotationBuildRotationBuild extends Schema.CollectionType {
+  collectionName: 'rotation_builds';
+  info: {
+    singularName: 'rotation-build';
+    pluralName: 'rotation-builds';
+    displayName: 'Rotation Builds';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    guide: Attribute.Relation<
+      'api::rotation-build.rotation-build',
+      'manyToOne',
+      'api::spec-guide.spec-guide'
+    >;
+    rotationSpec: Attribute.Component<'rotations.warrior-spec'>;
+    rotationHeroSpec: Attribute.Component<'rotations.hero-spec'>;
+    title: Attribute.String;
+    rotation: Attribute.RichText;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::rotation-build.rotation-build',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::rotation-build.rotation-build',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSpecGuideSpecGuide extends Schema.CollectionType {
   collectionName: 'spec_guides';
   info: {
@@ -837,7 +876,11 @@ export interface ApiSpecGuideSpecGuide extends Schema.CollectionType {
     consumables: Attribute.Text;
     weakauras: Attribute.Text;
     macros: Attribute.Text;
-    sectionRotations: Attribute.DynamicZone<['rotations.openers']>;
+    rotation_builds: Attribute.Relation<
+      'api::spec-guide.spec-guide',
+      'oneToMany',
+      'api::rotation-build.rotation-build'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -849,37 +892,6 @@ export interface ApiSpecGuideSpecGuide extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::spec-guide.spec-guide',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiTalentBuildTalentBuild extends Schema.CollectionType {
-  collectionName: 'talent_builds';
-  info: {
-    singularName: 'talent-build';
-    pluralName: 'talent-builds';
-    displayName: 'Talent Builds';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    buildName: Attribute.String;
-    wowImportString: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::talent-build.talent-build',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::talent-build.talent-build',
       'oneToOne',
       'admin::user'
     > &
@@ -906,8 +918,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::featured-video.featured-video': ApiFeaturedVideoFeaturedVideo;
+      'api::rotation-build.rotation-build': ApiRotationBuildRotationBuild;
       'api::spec-guide.spec-guide': ApiSpecGuideSpecGuide;
-      'api::talent-build.talent-build': ApiTalentBuildTalentBuild;
     }
   }
 }

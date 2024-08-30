@@ -14,17 +14,26 @@ export interface TalentBuildszTalentBuilds extends Schema.Component {
   };
 }
 
-export interface RotationsOpeners extends Schema.Component {
-  collectionName: 'components_rotations_openers';
+export interface RotationsWarriorSpec extends Schema.Component {
+  collectionName: 'components_rotations_warrior_specs';
   info: {
-    displayName: 'rotation';
+    displayName: 'Warrior Spec';
     icon: 'alien';
     description: '';
   };
   attributes: {
-    rotationText: Attribute.RichText;
-    heroSpec: Attribute.Enumeration<['Slayer', 'Colossus', 'Mountain Thane']>;
-    rotationType: Attribute.Enumeration<['opener', 'execute', 'normal']>;
+    warriorSpec: Attribute.Enumeration<['arms', 'fury', 'protection']>;
+  };
+}
+
+export interface RotationsHeroSpec extends Schema.Component {
+  collectionName: 'components_rotations_hero_specs';
+  info: {
+    displayName: 'Hero Spec';
+    icon: 'alien';
+  };
+  attributes: {
+    heroSpec: Attribute.Enumeration<['Colossus', 'Mountain Thane', 'Slayer']>;
   };
 }
 
@@ -32,7 +41,8 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'talent-buildsz.talent-builds': TalentBuildszTalentBuilds;
-      'rotations.openers': RotationsOpeners;
+      'rotations.warrior-spec': RotationsWarriorSpec;
+      'rotations.hero-spec': RotationsHeroSpec;
     }
   }
 }

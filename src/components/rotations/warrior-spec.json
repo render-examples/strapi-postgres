@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_rotations_warrior_specs",
+  "info": {
+    "displayName": "Warrior Spec",
+    "icon": "alien",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "warriorSpec": {
+      "type": "enumeration",
+      "enum": [
+        "arms",
+        "fury",
+        "protection"
+      ]
+    }
+  }
+}

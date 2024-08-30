@@ -30,11 +30,11 @@
     "macros": {
       "type": "text"
     },
-    "sectionRotations": {
-      "type": "dynamiczone",
-      "components": [
-        "rotations.openers"
-      ]
+    "rotation_builds": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::rotation-build.rotation-build",
+      "mappedBy": "guide"
     }
   }
 }

@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_rotations_hero_specs",
+  "info": {
+    "displayName": "Hero Spec",
+    "icon": "alien"
+  },
+  "options": {},
+  "attributes": {
+    "heroSpec": {
+      "type": "enumeration",
+      "enum": [
+        "Colossus",
+        "Mountain Thane",
+        "Slayer"
+      ]
+    }
+  }
+}
