@@ -35,6 +35,9 @@
       "relation": "oneToMany",
       "target": "api::rotation-build.rotation-build",
       "mappedBy": "guide"
+    },
+    "title": {
+      "type": "string"
     }
   }
 }

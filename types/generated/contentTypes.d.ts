@@ -881,6 +881,7 @@ export interface ApiSpecGuideSpecGuide extends Schema.CollectionType {
       'oneToMany',
       'api::rotation-build.rotation-build'
     >;
+    title: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
