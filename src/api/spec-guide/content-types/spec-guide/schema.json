@@ -38,6 +38,10 @@
     },
     "title": {
       "type": "string"
+    },
+    "author": {
+      "type": "string",
+      "required": true
     }
   }
 }

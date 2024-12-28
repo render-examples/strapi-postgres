@@ -1,48 +1,52 @@
-import type { Schema, Attribute } from '@strapi/strapi';
+import type { Schema, Struct } from '@strapi/strapi';
 
-export interface TalentBuildszTalentBuilds extends Schema.Component {
-  collectionName: 'components_talent_buildsz_talent_builds';
-  info: {
-    displayName: 'talentBuilds';
-    icon: 'apps';
-    description: '';
-  };
-  attributes: {
-    wowImportString: Attribute.String;
-    talentBuildPic: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    buildName: Attribute.String;
-  };
-}
-
-export interface RotationsWarriorSpec extends Schema.Component {
-  collectionName: 'components_rotations_warrior_specs';
-  info: {
-    displayName: 'Warrior Spec';
-    icon: 'alien';
-    description: '';
-  };
-  attributes: {
-    warriorSpec: Attribute.Enumeration<['arms', 'fury', 'protection']>;
-  };
-}
-
-export interface RotationsHeroSpec extends Schema.Component {
+export interface RotationsHeroSpec extends Struct.ComponentSchema {
   collectionName: 'components_rotations_hero_specs';
   info: {
     displayName: 'Hero Spec';
     icon: 'alien';
   };
   attributes: {
-    heroSpec: Attribute.Enumeration<['Colossus', 'Mountain Thane', 'Slayer']>;
+    heroSpec: Schema.Attribute.Enumeration<
+      ['Colossus', 'Mountain Thane', 'Slayer']
+    >;
   };
 }
 
-declare module '@strapi/types' {
-  export module Shared {
-    export interface Components {
-      'talent-buildsz.talent-builds': TalentBuildszTalentBuilds;
-      'rotations.warrior-spec': RotationsWarriorSpec;
+export interface RotationsWarriorSpec extends Struct.ComponentSchema {
+  collectionName: 'components_rotations_warrior_specs';
+  info: {
+    description: '';
+    displayName: 'Warrior Spec';
+    icon: 'alien';
+  };
+  attributes: {
+    warriorSpec: Schema.Attribute.Enumeration<['arms', 'fury', 'protection']>;
+  };
+}
+
+export interface TalentBuildszTalentBuilds extends Struct.ComponentSchema {
+  collectionName: 'components_talent_buildsz_talent_builds';
+  info: {
+    description: '';
+    displayName: 'talentBuilds';
+    icon: 'apps';
+  };
+  attributes: {
+    buildName: Schema.Attribute.String;
+    talentBuildPic: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    wowImportString: Schema.Attribute.String;
+  };
+}
+
+declare module '@strapi/strapi' {
+  export module Public {
+    export interface ComponentSchemas {
       'rotations.hero-spec': RotationsHeroSpec;
+      'rotations.warrior-spec': RotationsWarriorSpec;
+      'talent-buildsz.talent-builds': TalentBuildszTalentBuilds;
     }
   }
 }
