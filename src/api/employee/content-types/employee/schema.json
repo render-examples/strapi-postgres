@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "employees",
+  "info": {
+    "singularName": "employee",
+    "pluralName": "employees",
+    "displayName": "Employee"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Position": {
+      "type": "string"
+    },
+    "linkedInUrl": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "string"
+    },
+    "isPartner": {
+      "type": "boolean"
+    },
+    "Section": {
+      "type": "enumeration",
+      "enum": [
+        "leadership",
+        "northeast",
+        "southeast"
+      ]
+    },
+    "headshot": {
+      "type": "string"
+    }
+  }
+}
